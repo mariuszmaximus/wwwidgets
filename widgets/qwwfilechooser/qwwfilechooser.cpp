@@ -234,7 +234,7 @@ void QwwFileChooser::chooseFile() {
             break;
         case QFileDialog::ExistingFiles:
             QStringList s = QFileDialog::getOpenFileNames(this, tr("Choose files"), text(), filter());
-            path = s.isEmpty() ? QString::null : s.at(0);
+            path = s.isEmpty() ? QString() : s.at(0);
             break;
         }
     } else {
@@ -245,7 +245,7 @@ void QwwFileChooser::chooseFile() {
 		dlg.setNameFilter(filter());
         if (dlg.exec()) {
             QStringList s = dlg.selectedFiles();
-            path = s.isEmpty() ? QString::null : s.at(0);
+            path = s.isEmpty() ? QString() : s.at(0);
         }
     }
     if (ok && !path.isNull()) {
