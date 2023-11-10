@@ -261,6 +261,7 @@ void QwwColorComboBox::paintEvent(QPaintEvent * ) {
  *  \reimp
  */
 void QwwColorComboBox::dragEnterEvent(QDragEnterEvent *event) {
+#ifndef PROBLEM_FIX    
     if (event->mimeData()->hasColor())
         event->acceptProposedAction();
     else if (event->mimeData()->hasText()) {
@@ -269,6 +270,7 @@ void QwwColorComboBox::dragEnterEvent(QDragEnterEvent *event) {
         if (col.isValid())
             event->acceptProposedAction();
     }
+#endif    
 }
 
 /*!
@@ -277,12 +279,14 @@ void QwwColorComboBox::dragEnterEvent(QDragEnterEvent *event) {
  */
 void QwwColorComboBox::dropEvent(QDropEvent *event) {
     QColor c;
+#ifdef PROBLEM_FIX    
     if (event->mimeData()->hasColor()) {
         c = qvariant_cast<QColor>(event->mimeData()->colorData());
     } else if (event->mimeData()->hasText()) {
         c.setNamedColor(event->mimeData()->text());
     }
     setCurrentColor(c);
+#endif    
 }
 
 /*!
